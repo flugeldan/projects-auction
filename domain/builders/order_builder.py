@@ -2,6 +2,8 @@
 from uuid import uuid4, UUID
 from domain.entities.order import Order, TestCase
 from domain.entities.employee import EmployeeType
+from typing import Self
+
 
 
 class OrderBuilder:
@@ -15,23 +17,23 @@ class OrderBuilder:
         self._test_cases: list[TestCase] = []
         self._api_address: str = "localhost:8000"
 
-    def with_exp_reward(self, exp: int) -> "OrderBuilder":
+    def with_exp_reward(self, exp: int) -> Self:
         self._exp_reward = exp
         return self
 
-    def with_money_reward(self, money: int) -> "OrderBuilder":
+    def with_money_reward(self, money: int) -> Self:
         self._money_reward = money
         return self
 
-    def with_api_address(self, address: str) -> "OrderBuilder":
+    def with_api_address(self, address: str) -> Self:
         self._api_address = address
         return self
 
-    def add_required_employee(self, employee_type: EmployeeType, count: int) -> "OrderBuilder":
+    def add_required_employee(self, employee_type: EmployeeType, count: int) -> Self:
         self._required_employees[employee_type] = count
         return self
 
-    def add_test_case(self, test_case: TestCase) -> "OrderBuilder":
+    def add_test_case(self, test_case: TestCase) -> Self:
         self._test_cases.append(test_case)
         return self
 

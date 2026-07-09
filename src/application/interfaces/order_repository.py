@@ -13,5 +13,6 @@ class AbstractOrderRepository(ABC):
     @abstractmethod
     async def save(self, user: Order) -> None:
         ...
+    
 
     

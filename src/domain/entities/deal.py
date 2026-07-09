@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from uuid import UUID
+from uuid import UUID, uuid4
 from enum import Enum
 from datetime import datetime, timezone, timedelta
 from domain.entities.order import Order

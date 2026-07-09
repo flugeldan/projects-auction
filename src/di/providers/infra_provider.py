@@ -17,6 +17,13 @@ from infrastructure.database.repositories.deal_repository import SQLAlchemyDealR
 
 
 class Infrastructure(Provider):
+
+    def __init__(self, scope = None, component = None, when = None):
+        super().__init__(scope, component, when)
+
+
+
+
     @provide(scope=Scope.APP)
     def get_password_hasher(self) -> AbstractPasswordHasher:
         return BcryptPasswordHasher()
@@ -41,6 +48,8 @@ class Infrastructure(Provider):
     @provide(scope=Scope.REQUEST)
     def get_deal_repository(self, session: AsyncSession) -> AbstractDealRepository:
         return SQLAlchemyDealRepository(session = session)
+    
+
     
     
     

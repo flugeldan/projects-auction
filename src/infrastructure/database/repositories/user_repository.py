@@ -1,6 +1,6 @@
-from application.interfaces.user_repository import AbstractUserRepository
-from domain.entities.user import User
-from sqlalchemy import select
+from src.application.interfaces.user_repository import AbstractUserRepository
+from src.domain.entities.user import User
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from uuid import UUID
@@ -9,7 +9,7 @@ class SQLAlchemyUserRepository(AbstractUserRepository):
         self._session = session
     
     async def get_by_id(self, user_id: UUID):
-        return self._session.get(User, user_id)
+        return await self._session.get(User, user_id)
     
     async def get_by_email(self, email: str):
         stmt = (select(User)
@@ -18,8 +18,18 @@ class SQLAlchemyUserRepository(AbstractUserRepository):
 
         return res.scalar_one_or_none()
     
-    async def save(self, user: User):
-        return await self._session.add(user)
+    async def save(self, user: User) -> None:
+        self._session.add(user)
+        await self._session.flush()
+
+    async def update(self, user: User) -> None:
+        pass
+        
+    
+    
+    
+    
+
 
         
         

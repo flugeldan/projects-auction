@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Self
-from application.interfaces.transaction_manager import AbstractTransactionManager
+from src.application.interfaces.transaction_manager import AbstractTransactionManager
 from sqlalchemy.ext.asyncio import AsyncSession
 
 class SQLAlchemyTransactionManager(AbstractTransactionManager):

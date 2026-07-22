@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
-from domain.entities.user import User
+from src.domain.entities.user import User
 class AbstractUserRepository(ABC):
     @abstractmethod
     async def get_by_id(self, user_id: UUID) -> User | None:
@@ -11,5 +11,10 @@ class AbstractUserRepository(ABC):
         ...
 
     @abstractmethod
-    async def save(self, user: User) -> None:
+    async def save(user: User) -> None:
         ...
+    
+    @abstractmethod
+    async def update(self, user: User) -> None:
+        ...
+
